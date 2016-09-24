@@ -1,4 +1,6 @@
-function home(response) {
+var querystring = require("querystring");
+
+function home(response, postData) {
 	console.log("Inside home handler");
 
 	var body = '<html>'+
@@ -19,7 +21,7 @@ function home(response) {
 	response.end();
 }
 
-function start(response) {
+function start(response,postData) {
 	console.log("Inside start handler");
 
 	setTimeout(function () {
@@ -29,10 +31,10 @@ function start(response) {
 	}, 5000);
 }
 
-function upload(response) {
+function upload(response, postData) {
 	console.log("Inside upload handler");
 	response.writeHead(200, {"Content-Type": "text/plain"});
-	response.write("Uploaded");
+	response.write("Received the following data... " + querystring.parse(postData).text);
 	response.end();
 }
 
