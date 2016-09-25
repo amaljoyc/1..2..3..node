@@ -1,3 +1,9 @@
+- To get all the dependencies,
+
+```
+npm install
+```
+
 - To run the api using node,
 
 ```
