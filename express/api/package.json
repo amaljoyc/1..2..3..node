@@ -2,13 +2,14 @@
   "name": "my_api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "amaljoyc",
   "dependencies": {
     "body-parser": "^1.9.0",
-    "express": "^4.9.8"
+    "express": "^4.9.8",
+    "swagger-express-mw": "^0.1.0"
   }
 }
