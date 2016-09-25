@@ -1,23 +1,37 @@
 var express = require('express');
 var router = express.Router();
 
-// middleware to use for all requests
-router.use(function(request, respose, next) {
+function common(request, respose, next) {
 	console.log('request received!');
 	next();
-});
+}
 
-router.get('/hello', function(request, respose) {
-	respose.send('Hello there!');
-});
+function hello(request, respose) {
+	var name = request.query.name;
+	var body = "";
 
-router.get('/hello-json', function(request, respose) {
+	if (name) {
+		body = 'Hello ' + name;
+	} else {
+		body = 'Hello there!';
+	}
+
+	respose.send(body);
+}
+
+function helloJson(request, respose) {
 	respose.json({ message: 'Hello there!' });
-});
+}
 
-router.post('/push', function(request, respose) {
+function push(request, respose) {
 	var data = request.body;
 	respose.send('Received push request with json: ' + JSON.stringify(data));
-});
+}
+
+
+router.use(common);
+router.get('/hello', hello);
+router.get('/hello-json', helloJson);
+router.post('/push', push);
 
 module.exports = router;
